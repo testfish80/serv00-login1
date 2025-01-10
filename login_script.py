@@ -8,8 +8,8 @@ import requests
 import os
 
 # 从环境变量中获取 Telegram Bot Token 和 Chat ID
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+# TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+# TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
 def format_to_iso(date):
     return date.strftime('%Y-%m-%d %H:%M:%S')
@@ -103,31 +103,31 @@ async def main():
     await send_telegram_message(message)
     print(f'所有{serviceName}账号登录完成！')
 
-async def send_telegram_message(message):
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    payload = {
-        'chat_id': TELEGRAM_CHAT_ID,
-        'text': message,
-        'reply_markup': {
-            'inline_keyboard': [
-                [
-                    {
-                        'text': '问题反馈❓',
-                        'url': 'https://t.me/seagoing123'
-                    }
-                ]
-            ]
-        }
-    }
-    headers = {
+# async def send_telegram_message(message):
+    # url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+   #  payload = {
+        #'chat_id': TELEGRAM_CHAT_ID,
+        #'text': message,
+        #'reply_markup': {
+         #   'inline_keyboard': [
+         #       [
+         #           {
+           #             'text': '问题反馈❓',
+           #             'url': 'https://t.me/seagoing123'
+           #         }
+            #    ]
+           # ]
+       # }
+   # }
+  #  headers = {
         'Content-Type': 'application/json'
-    }
-    try:
-        response = requests.post(url, json=payload, headers=headers)
-        if response.status_code != 200:
-            print(f"发送消息到Telegram失败: {response.text}")
-    except Exception as e:
-        print(f"发送消息到Telegram时出错: {e}")
+   # }
+  #  try:
+  #      response = requests.post(url, json=payload, headers=headers)
+   #     if response.status_code != 200:
+   #         print(f"发送消息到Telegram失败: {response.text}")
+   # except Exception as e:
+  #     print(f"发送消息到Telegram时出错: {e}")
 
-if __name__ == '__main__':
+if __name__ == '__main__'
     asyncio.run(main())
