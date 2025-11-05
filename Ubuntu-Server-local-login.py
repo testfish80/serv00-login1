@@ -2,7 +2,7 @@ import json
 import asyncio
 from playwright.async_api import async_playwright
 from datetime import datetime, timedelta
-
+import time
 import random
 import requests
 import os
@@ -45,16 +45,17 @@ async def login(username, password, panel, browser): # 接收 browser 参数
         await page.fill('#id_password', password)
 
         # 使用类名定位登录按钮
-        login_button = page.locator('.button--primary').nth(1)  # 假设登录按钮是第二个匹配到的元素
+        login_button = page.locator('.button--primary').nth(1)  # 登录按钮是第二个匹配到的元素
         if await login_button.count() > 0:  # 确保元素存在
             await login_button.click()
         else:
             raise Exception('无法找到登录按钮')
 
-        await page.wait_for_load_state() # 使用 wait_for_load_state 替代 waitForNavigation
+        await page.wait_for_load_state() # 
 
         # 检查登录状态
         is_logged_in = await page.locator('a[href="/logout/"]').count() > 0
+        time.sleep(5)
         await page.close()  # 操作结束后关闭页面
 
         return is_logged_in
