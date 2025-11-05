@@ -77,7 +77,14 @@
     - 获取方法: 创建一个包含serv00账号信息的 JSON 文件，并将其内容添加到 GitHub 仓库的 Secrets 中。
 
 ### 注意事项
-
+'''
+# Ubuntu Server
+pip install playwright
+python -m playwright install chromium
+sudo apt install xvfb
+Xvfb :1 -screen 0 1280x720x24 &
+export DISPLAY=:1
+'''
 - **保密性**: Secrets 是敏感信息，请确保不要将它们泄露到公共代码库或未授权的人员。
 - **更新和删除**: 如果需要更新或删除 Secrets，可以通过仓库的 Secrets 页面进行管理。
 
